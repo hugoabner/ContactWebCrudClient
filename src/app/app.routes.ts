@@ -8,5 +8,9 @@ export const routes: Routes = [
   {
     path:'new',
     loadComponent: () => import('./components/contact-form/contact-form.component')
+  },
+  {
+    path:':id/edit',
+    loadComponent: () => import('./components/contact-form/contact-form.component')
   }
 ];

@@ -1,21 +1,44 @@
-<h2 class="mb-5">Nuevo fofmulario</h2>
-<form action="">
-  <div>
-    <label for="name">Nombre</label>
-    <input id="name" type="text" placeholder="Nombre" class="form-control">
-  </div>
+<h2 class="mb-5">
+  {{ contact ? 'Actualizar' : 'Nuevo' }} contacto
+</h2>
+<div class="row row-cols-3 justify-content-center">
+  @if (form) {
+    <form [formGroup]="form" (submit)="create()">
 
-  <div>
-    <label for="email">Email</label>
-    <input id="email" type="email" placeholder="Email" class="form-control">
-  </div>
+      <div>
+        <label for="name">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Nombre"
+          class="form-control"
+          formControlName="name"
+        >
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          formControlName="email"
+        >
+      </div>
 
-  <div class="text-end">
-    <button class="btn btn-primary ms-2">
-      Crear contact
-    </button>
-    <button type="button" class="btn btn-danger ms-2" routerLink="/">
-      Cancelar
-    </button>
-  </div>
-</form>
+      <div class="text-end">
+        <button
+          type="button"
+          class="btn btn-danger ms-2"
+          routerLink="/"
+        >
+          Cancelar
+        </button>
+        <button class="btn btn-primary ms-2">
+          {{ contact ? 'Actualizar' : 'Crear' }} contacto
+        </button>
+      </div>
+
+    </form>
+  }
+</div>
