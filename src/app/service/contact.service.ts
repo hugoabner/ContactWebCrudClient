@@ -7,35 +7,36 @@ import { Contact } from '../model/contact.interface';
 })
 export class ContactService {
 
+  private readonly API_URL = 'http://localhost:8080/api/contacts';
   private readonly http = inject(HttpClient)
 
   list() {
     return this.http.get<Contact[]>(
-      'http://localhost:8080/api/contacts'
+      this.API_URL
     );
   }
 
   get(id: number) {
     return this.http.get<Contact>(
-      `http://localhost:8080/api/contacts/${id}`
+      `${this.API_URL}/${id}`
     );
   }
 
-  create(contact: any) {
+  create(contact: Contact) {
     return this.http.post<Contact>(
-      'http://localhost:8080/api/contacts', contact
+      this.API_URL, contact
     );
   }
 
-  update(id: number, contact: any) {
+  update(id: number, contact: Contact) {
     return this.http.put<Contact>(
-      `http://localhost:8080/api/contacts/${id}`, contact
+      `${this.API_URL}/${id}`, contact
     );
   }
 
   delete(id: number) {
     return this.http.delete<void>(
-       `http://localhost:8080/api/contacts/${id}`
+       `${this.API_URL}/${id}`
     );
   }
 }

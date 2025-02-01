@@ -23,9 +23,21 @@ export default class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
 
   ngOnInit(): void {
+    this.loadAll()
+  }
+
+  loadAll() {
     this._serviceContact.list().subscribe(
       contacts =>
         this.contacts = contacts
+    )
+  }
+
+  deleteContact(contact: Contact) {
+    this._serviceContact.delete(contact.id).subscribe(
+      () => {
+        this.loadAll();
+      }
     )
   }
 
